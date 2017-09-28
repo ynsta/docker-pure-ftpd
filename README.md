@@ -1,7 +1,7 @@
 # Pure-FTPd Debian based image
 
-DockerHub : https://hub.docker.com/r/ynsta/pure-ftpd/
-GitHub : https://github.com/ynsta/docker-pure-ftpd
+- DockerHub : https://hub.docker.com/r/ynsta/pure-ftpd/
+- GitHub : https://github.com/ynsta/docker-pure-ftpd
 
 ## Usage
 
