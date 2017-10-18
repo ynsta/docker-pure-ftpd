@@ -40,7 +40,7 @@ else
     reset=true
 fi
 
-if $reset then
+if $reset; then
     # Reset the file
     rm -f /etc/pure-ftpd/pureftpd.passwd
     touch /etc/pure-ftpd/pureftpd.passwd
