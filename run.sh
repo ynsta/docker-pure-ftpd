@@ -29,20 +29,25 @@ groupadd --gid $PGID ftp
 useradd  --uid $PUID --gid $PGID -d /srv/ftp -s /dev/null ftp
 chown ftp:ftp /srv/ftp
 
+reset=false
 # pureftpd.passwd already present ?
 if [ -e /etc/pure-ftpd/pureftpd.passwd ]; then
-
     # yes so test if the UID and PID in the password file
     if ! grep -q ":$PUID:$PGID:" /etc/pure-ftpd/pureftpd.passwd; then
-
-        # Reset the file
-        rm -f /etc/pure-ftpd/pureftpd.passwd
-        touch /etc/pure-ftpd/pureftpd.passwd
-        chmod 600 /etc/pure-ftpd/pureftpd.passwd
-
-        # Generate a default password that should be changed
-        PASSWORD=$(pwgen -scny 12 -1); echo -e "${PASSWORD}\n${PASSWORD}\n" | pure-pw useradd $VUSER -u ftp -d /srv/ftp
+    	reset=true
     fi
+else
+    reset=true
+fi
+
+if $reset then
+    # Reset the file
+    rm -f /etc/pure-ftpd/pureftpd.passwd
+    touch /etc/pure-ftpd/pureftpd.passwd
+    chmod 600 /etc/pure-ftpd/pureftpd.passwd
+
+    # Generate a default password that should be changed
+    PASSWORD=$(pwgen -scny 12 -1); echo -e "${PASSWORD}\n${PASSWORD}\n" | pure-pw useradd $VUSER -u ftp -d /srv/ftp
 fi
 
 # Generate password database
