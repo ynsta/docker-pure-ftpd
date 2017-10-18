@@ -30,6 +30,24 @@ docker run -d -it --name=pure-ftpd \
   ynsta/pure-ftpd
 ```
 
+### Environnement variables
+
+- VUSER:\
+  Virtual username used to connect to FTP
+- PUID:\
+  User ID of data in the /srv/ftp volume
+- GUID:\
+  Group ID of data in the /srv/ftp volume
+- PASSIVEMIN:\
+  Minimum passive port in pure-ftpd config
+- PASSIVEMAX:\
+  Maximum passive port in pure-ftpd config
+- PUBLICHOST:\
+  Your full hostname
+- SSL_SUBJ:\
+  SSL SUBJ for key generation
+- TLS_MODE:\
+  Enable TLS only mode in Pure-FTPd "2". Change to "1" to also allow insecure mode.
 
 ### Maintenance
 
@@ -38,3 +56,5 @@ docker run -d -it --name=pure-ftpd \
 ```shell
 docker exec -it pure-ftpd pure-pw passwd VUSER -m
 ```
+
+Replace VUSER with the user provided to create the container env.
