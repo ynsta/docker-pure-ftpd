@@ -22,7 +22,7 @@ chmod 600 /etc/ssl/private/pure-ftpd.pem
 mkdir -p /srv/ftp
 
 # Delete ftp user if already created
-getent passwd ftp2 &>/dev/null && userdel -rf ftp &> /dev/null
+getent passwd ftp &>/dev/null && userdel -rf ftp &> /dev/null
 
 # Create the ftp group and user with wanted UID and GID
 groupadd --gid $PGID ftp
